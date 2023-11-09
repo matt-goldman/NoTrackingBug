@@ -30,8 +30,12 @@ namespace NoTrackingBug.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("IntegrationId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -39,6 +43,9 @@ namespace NoTrackingBug.Migrations
 
                     b.Property<int>("Points")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("Updated")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -56,9 +63,15 @@ namespace NoTrackingBug.Migrations
                     b.Property<int>("AchievementId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Updated")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -75,9 +88,15 @@ namespace NoTrackingBug.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Updated")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -95,6 +114,12 @@ namespace NoTrackingBug.Migrations
                     b.Property<int>("AchievementId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("Updated")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -102,7 +127,7 @@ namespace NoTrackingBug.Migrations
 
                     b.HasIndex("AchievementId");
 
-                    b.HasIndex("UserId", "AchievementId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserAchievements");
                 });

@@ -1,6 +1,6 @@
 ﻿namespace NoTrackingBug.Models;
 
-public class Achievement
+public class Achievement : AuditableEntity
 {
     public int Id { get; set; }
 
@@ -11,5 +11,5 @@ public class Achievement
     public ICollection<UserAchievement> UserAchievements { get; set; } = new HashSet<UserAchievement>();
     public ICollection<Quiz> Quizzes { get; set; } = new HashSet<Quiz>();
 
-    public DateTime CreatedAt { get; set; }
+    public string IntegrationId { get; set; }
 }

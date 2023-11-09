@@ -7,10 +7,15 @@ namespace NoTrackingBug.Data;
 public class ApplicationDbContext : DbContext
 {
     private readonly AchievementInterceptor _achievementInterceptor;
+    private readonly AuditableEntityInterceptor _auditableEntityInterceptor;
 
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, AchievementInterceptor achievementInterceptor) : base(options)
+    public ApplicationDbContext(
+        DbContextOptions<ApplicationDbContext> options,
+        AchievementInterceptor achievementInterceptor,
+        AuditableEntityInterceptor auditableEntityInterceptor) : base(options)
     {
         _achievementInterceptor = achievementInterceptor;
+        _auditableEntityInterceptor = auditableEntityInterceptor;
     }
 
     public DbSet<User> Users { get; set; } = null!;
@@ -26,5 +31,6 @@ public class ApplicationDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.AddInterceptors(_achievementInterceptor);
+        optionsBuilder.AddInterceptors(_auditableEntityInterceptor);
     }
 }

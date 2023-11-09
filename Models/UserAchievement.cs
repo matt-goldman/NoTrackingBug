@@ -1,6 +1,6 @@
 ﻿namespace NoTrackingBug.Models;
 
-public class UserAchievement
+public class UserAchievement : AuditableEntity
 {
     public int Id { get; set; }
 

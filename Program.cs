@@ -41,6 +41,7 @@ var host = Host.CreateDefaultBuilder(args);
 host.ConfigureServices(services =>
 {
     services.AddScoped<AchievementInterceptor>();
+    services.AddScoped<AuditableEntityInterceptor>();
 
     services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=NoTrackingBug;Trusted_Connection=True;MultipleActiveResultSets=true"));
 

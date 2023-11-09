@@ -14,7 +14,7 @@ public class AchievementInterceptor : SaveChangesInterceptor
         {
             if (entry.State == EntityState.Added)
             {
-                entry.Entity.CreatedAt = DateTime.UtcNow;
+                entry.Entity.IntegrationId = Guid.NewGuid().ToString();
             }
         }
 
